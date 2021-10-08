@@ -48,3 +48,16 @@ Vagrant Scripts to configure WSO2 Products
   vagrant box list (it should have centos/8)
   vagrant box remove centos/8
   vagrant box list (now it should be empty)
+
+# Example how to use the xmlstarlet program
+echo $ROLE": configuring thrift for analytics"
+XMLFILE=$FILE/repository/conf/api-manager.xml
+xmlstarlet ed --inplace -P -u //Analytics/Enabled -v $ANALYTICS $XMLFILE
+xmlstarlet ed --inplace -P -u //Analytics/StreamProcessorServerURL -v '{tcp://noded:7612}' $XMLFILE
+xmlstarlet ed --inplace -P -a //Analytics/StreamProcessorServerURL -t elem -n StreamProcessorAuthServerURL -v '{ssl://noded:7712}' $XMLFILE
+xmlstarlet ed --inplace -P -u //Analytics/StreamProcessorRestApiURL -v 'https://noded:7444' $XMLFILE
+XMLFILE=$FILE/repository/conf/output-event-adapters.xml
+xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.thrift.tcp.url']" -v 'tcp://noded:7612' $XMLFILE
+xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.thrift.ssl.url']" -v 'ssl://noded:7712' $XMLFILE
+xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.binary.tcp.url']" -v 'tcp://noded:7612' $XMLFILE
+xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.binary.ssl.url']" -v 'ssl://noded:7712' $XMLFILE
