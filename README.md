@@ -30,7 +30,7 @@ Vagrant Scripts to configure WSO2 Products
 [2021-10-08 09:51:56,544]  INFO - CarbonUIServiceComponent API Developer Portal Default Context : https://localhost:9443/devportal
 [2021-10-08 09:51:56,544]  INFO - CarbonUIServiceComponent API Publisher Default Context : https://localhost:9443/publisher
 - connect in multiple tabs to the URLs shown in the log file
-
+- username and passwords: Admin / Admin
 
 # How to stop WSO2 API-Manager
 - in the previously opened CMD prompt, press CTRL-C and wait a few seconds until the program ends
