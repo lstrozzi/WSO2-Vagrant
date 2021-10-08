@@ -2,6 +2,7 @@
 Vagrant Scripts to configure WSO2 Products
 
 # Required products:
+- Tortoise Git
 - Oracle Virtualbox
 - Vagrant
 
