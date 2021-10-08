@@ -22,8 +22,15 @@ Vagrant Scripts to configure WSO2 Products
   ./api-manager.sh
 - the application will start, and take about 2-5 minutes to complete startup
 - you know when startup is
-- once that is done, open a browser in the host (Windows) and connect in multiple tabs to the following URLs:
-  
+- once that is done, open a browser in the host (Windows) and connect in multiple tabs to the URLs shown in the next section
+
+# How to connect to API Manager consoles
+- You noticed during startup (towards the end) these lines in the log:
+[2021-10-08 09:51:56,543]  INFO - CarbonUIServiceComponent Mgt Console URL  : https://localhost:9443/carbon/
+[2021-10-08 09:51:56,544]  INFO - CarbonUIServiceComponent API Developer Portal Default Context : https://localhost:9443/devportal
+[2021-10-08 09:51:56,544]  INFO - CarbonUIServiceComponent API Publisher Default Context : https://localhost:9443/publisher
+- connect in multiple tabs to the URLs shown in the log file
+
 
 # How to stop WSO2 API-Manager
 - in the previously opened CMD prompt, press CTRL-C and wait a few seconds until the program ends
