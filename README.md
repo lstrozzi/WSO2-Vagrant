@@ -16,7 +16,7 @@ Vagrant Scripts to configure WSO2 Products
   vagrant ssh
   You are username=vagrant, password=vagrant
 - in the VM, CD to the directory:
-  cd /opt/wso2/wso2-am/bin
+  cd /opt/wso2/wso2am/bin
 - (optionally remove all Windows batch files: rm *.bat)
 - in the VM, start the API Manager:
   ./api-manager.sh

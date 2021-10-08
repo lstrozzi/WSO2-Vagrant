@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 	
 	# Box configuration
 	wso2am.vm.provider "virtualbox" do |vb|
-	    vb.name = "t2b WSO2 API Manager (9443) + Application Server (9446)"
+	    vb.name = "t2b WSO2 API Manager (9443)"
 	    vb.memory = "4096"
 	    vb.cpus = "2"
 
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
 	config.vm.network "forwarded_port", guest: 9443, host: 9443
 	# config.vm.network "forwarded_port", guest: 9444, host: 9444
 	# config.vm.network "forwarded_port", guest: 9445, host: 9445
-	config.vm.network "forwarded_port", guest: 9446, host: 9446
+	# config.vm.network "forwarded_port", guest: 9446, host: 9446
 	# config.vm.network "forwarded_port", guest: 9446, host: 9447
 
 	# Create a private network, which allows host-only access to the machine
@@ -64,7 +64,6 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "wso2AM",            type: "shell", path: "../Provisioning/wso2AM.sh"
 	
 	# enable all in this section for Distributed Deployment
-	# config.vm.provision "mysql",             type: "shell", path: "../Provisioning/mysql.sh"
 	# config.vm.provision "DistDeb",           type: "shell", path: "../Provisioning/DistDeb.sh"
 	
 	# config.vm.provision "pizza",             type: "shell", path: "../Provisioning/pizzaShack.sh"
