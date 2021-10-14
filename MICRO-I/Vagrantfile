@@ -22,19 +22,13 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "product-dist", type: "shell", 
 	    path: "../Provisioning/wso2-product-dist.sh",
 		args: ["micro-integrator", "4.0.0", "wso2mi"]
+	config.vm.provision "systemd-service", type: "shell", 
+	    path: "../Provisioning/systemd-service.sh",
+		args: ["/opt/wso2/wso2mi/bin/micro-integrator.sh"]
 
 	config.vm.provision "shell", inline: <<-SHELL
         echo "****** REBOOTING... ******"
 	    reboot
 	SHELL
-
-    config.vm.provision "startup", type: "shell", run: "always", after: :all,
-	    args: ["/opt/wso2/wso2mi/bin/micro-integrator.sh"],
-		inline: <<-SHELL
-		    chown vagrant:vagrant $1
-		    chmod a+x $1
-			cd dirname $1
-			$1
-	    SHELL
     end
 end
