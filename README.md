@@ -6,6 +6,14 @@ Vagrant Scripts to configure WSO2 Products
 - Oracle Virtualbox
 - Vagrant
 
+# How to enable shared directory
+- create vagrant_data directory in your user home directory
+- type this command in a terminal:
+  vagrant plugin install vagrant-vbguest
+- insert these lines in the Vagrantfile:
+  config.vbguest.installer_options = { allow_kernel_upgrade: true }
+	config.vm.synced_folder "~/vagrant_data", "/vagrant_data"
+
 # How to run WSO2 API-Manager
 - open a CMD.exe prompt
 - CD to the API-M folder
