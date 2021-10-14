@@ -1,0 +1,36 @@
+Vagrant.configure("2") do |config|
+	config.vm.define "wso2am", primary: true do |wso2am|
+		config.vm.box = "centos-t2b"
+		wso2am.vm.hostname = "wso2am"
+		wso2am.vm.provider "virtualbox" do |vb|
+			vb.name = "t2b WSO2 API Manager 2 (9443)"
+			vb.memory = "4096"
+			vb.cpus = "2"
+			vb.gui = false
+		end
+		config.vm.network "forwarded_port", guest: 9443, host: 9443
+		config.vm.network "forwarded_port", guest: 8243, host: 8243
+		config.vm.network "private_network", type: "dhcp"
+
+		config.vm.provision "wso2AM",			type: "shell", path: "../Provisioning/wso2AM.sh"
+		config.vm.provision "systemd-service", type: "shell",
+			path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/wso2/wso2am/bin/api-manager.sh"]
+	end
+
+	config.vm.define "wso2mg" do |wso2mg|
+		config.vm.box = "centos-t2b"
+		wso2mg.vm.hostname = "wso2am-micro-gw-linux"
+		wso2mg.vm.provider "virtualbox" do |vb|
+			vb.name = "t2b WSO2 micro gateway"
+			vb.memory = "2024"
+			vb.cpus = "2"
+			vb.gui = false
+		end
+		config.vm.network "private_network", type: "dhcp"
+
+		config.vm.provision "product-dist", type: "shell",
+			path: "../Provisioning/wso2-product-dist.sh",
+			args: ["micro-gateway/runtime", "3.2.3", "wso2am-micro-gw-linux"]
+	end
+end
