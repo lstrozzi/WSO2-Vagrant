@@ -25,3 +25,4 @@ Environment=JAVA_HOME=$JAVA_HOME
 WantedBy=multi-user.target
 EOF
 systemctl enable $UNIT
+systemctl start $NAME

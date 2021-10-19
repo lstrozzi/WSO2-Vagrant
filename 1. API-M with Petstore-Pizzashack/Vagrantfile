@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+    config.vm.define "wso2am" do |wso2am|
+	wso2am.vm.box = "centos-t2b"
+	wso2am.vm.hostname = "wso2am"
+	wso2am.vm.provider "virtualbox" do |vb|
+	    vb.name = "t2b WSO2 API Manager 8 (9443)"
+	    vb.memory = "4096"
+	    vb.cpus = "2"
+	    vb.gui = false
+	end
+
+	config.vm.network "forwarded_port", guest: 9443, host: 9443
+	config.vm.network "forwarded_port", guest: 8243, host: 8243
+	config.vm.network "private_network", ip: "192.168.56.10"
+	config.vm.synced_folder "~/vagrant_data", "/vagrant_data"
+	config.vm.provision "download-api-manager", type: "shell",
+			path: "../Provisioning/wso2-product-dist.sh",
+			args: ["https://product-dist.wso2.com/products/api-manager/4.0.0/wso2am-4.0.0.zip"]
+
+	config.vm.provision "apictl",			type: "shell",	path: "apictl.sh"
+	config.vm.provision "maven",			type: "shell",	path: "../Provisioning/maven.sh"
+	config.vm.provision "pizza",			type: "shell",	path: "../Provisioning/pizzaShack.sh"
+	config.vm.provision "systemd-service",	type: "shell",	path: "../Provisioning/systemd-service.sh",
+		args: ["/opt/wso2/wso2am/bin/api-manager.sh"]
+
+	config.vm.provision "t2bTraining",		type: "shell", path: "t2bTraining.sh"
+    end
+end

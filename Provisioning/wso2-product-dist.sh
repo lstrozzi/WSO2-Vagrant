@@ -1,12 +1,19 @@
-PROVISION="WSO2 $1 "
+if [[ $1 == https://product-dist.wso2.com/products/* ]]
+then
+  URL=$1
+else
+  echo "the argument is not a WSO2 product url"
+  exit 1
+fi
+
+FILEZIP=$(echo $URL | sed 's/.*\/\(.*\)/\1/')
+FILE=$(echo $FILEZIP | sed 's/\(.*\)\.zip/\1/')
+FILEBASE=$(echo $FILEZIP | sed 's/\(.*\)-.*\.zip/\1/')
+VERSION=$(echo $FILEZIP | sed 's/.*-\(.*\)\.zip/\1/')
+
+PROVISION="WSO2 $FILEBASE $VERSION "
 echo "**************************************************** Provisioning '"$PROVISION"' is starting..."
 
-PRODUCT=$1
-VERSION=$2
-FILEBASE=$3
-FILE=$FILEBASE-$VERSION
-FILEZIP=$FILE.zip
-BASEURL=http://product-dist.wso2.com/products/$PRODUCT
 CACHEDIR=/vagrant_data/products
 
 if [ ! -d "$CACHEDIR" ]; then
@@ -18,8 +25,8 @@ if [ ! -f $FILEZIP ]; then
   
    if [ ! -f $CACHEDIR/$FILEZIP ]; then
      # downloading from WSO2 repository circumventing the required credentials
-     echo "Downloading " $BASEURL/$VERSION/$FILEZIP "..."
-     sudo wget -q --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download" $BASEURL/$VERSION/$FILEZIP
+     echo "Downloading " $URL "..."
+     sudo wget -q --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download" $URL
      mv $FILEZIP $CACHEDIR/$FILEZIP
    fi
    
