@@ -1,0 +1,35 @@
+Vagrant.configure("2") do |config|
+	config.vm.define "wso2am", primary: true do |wso2am|
+		wso2am.vm.box = "centos/8"
+		wso2am.vm.hostname = "wso2am"
+		wso2am.vm.provider "virtualbox" do |vb|
+			vb.name = "t2b WSO2 API Manager 3 (9443)"
+			vb.memory = "4096"
+			vb.cpus = "2"
+			vb.gui = false
+		end
+		wso2am.vm.network "forwarded_port", guest: 9443, host: 9443
+		wso2am.vm.network "private_network", ip: "192.168.56.13"
+		wso2am.vbguest.installer_options = { allow_kernel_upgrade: true }
+		wso2am.vm.synced_folder "~/vagrant_data", "/vagrant_data"
+		wso2am.vm.provision "basicUtilities",    type: "shell", path: "../Provisioning/basicUtilities.sh"
+		wso2am.vm.provision "oracleJDK",         type: "shell", path: "../Provisioning/oracleJDK.sh"
+		wso2am.vm.provision "wso2AM",			type: "shell", path: "../Provisioning/wso2AM.sh"
+		wso2am.vm.provision "configure",		type: "shell", path: "configure.sh"
+		wso2am.vm.provision "apictl",			type: "shell",	path: "../Provisioning/apictl.sh"
+		wso2am.vm.provision "systemd-service-api-manager",	type: "shell",
+			path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/wso2/wso2am/bin/api-manager.sh"]
+		wso2am.vm.provision "product-dist-micro-integrator", type: "shell", 
+			path: "../Provisioning/wso2-product-dist.sh",
+			args: ["https://product-dist.wso2.com/products/micro-integrator/4.0.0/wso2mi-4.0.0.zip"]
+		wso2am.vm.provision "systemd-service-micro-integrator", type: "shell", 
+			path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/wso2/wso2mi/bin/micro-integrator.sh"]
+
+		#wso2am.vm.provision "shell", inline: <<-SHELL
+		#	echo "****** REBOOTING... ******"
+		#	reboot
+		#SHELL
+	end
+end
