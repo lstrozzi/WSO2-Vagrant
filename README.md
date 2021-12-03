@@ -30,13 +30,15 @@ Vagrant Scripts to configure WSO2 Products
 - once it's running, connect to the VM:
   vagrant ssh
   You are username=vagrant, password=vagrant
+- Manual start-up:
 - in the VM, CD to the directory:
   cd /opt/wso2/wso2am/bin
 - (optionally remove all Windows batch files: rm *.bat)
 - in the VM, start the API Manager:
   ./api-manager.sh
 - the application will start, and take about 2-5 minutes to complete startup
-- you know when startup is
+- Automatic start-up
+  There is a system.d configuration that starts up the API Manager automatically. To stop/restart you can use: systemctl stop/start/status api-manager
 - once that is done, open a browser in the host (Windows) and connect in multiple tabs to the URLs shown in the next section
 
 # How to connect to API Manager consoles
@@ -76,3 +78,7 @@ xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key=
 xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.thrift.ssl.url']" -v 'ssl://noded:7712' $XMLFILE
 xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.binary.tcp.url']" -v 'tcp://noded:7612' $XMLFILE
 xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.binary.ssl.url']" -v 'ssl://noded:7712' $XMLFILE
+
+
+# Additional tools
+https://www.yenlo.com/blogs/looking-at-your-wso2-logs-using-rtail-nodejs/
