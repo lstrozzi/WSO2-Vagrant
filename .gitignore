@@ -1,1 +1,2 @@
-/API-M/.vagrant
+.*
+*.bak

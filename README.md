@@ -2,9 +2,23 @@
 Vagrant Scripts to configure WSO2 Products
 
 # Required products:
-- Tortoise Git
+- Tortoise Git (incl. Git)
 - Oracle Virtualbox
 - Vagrant
+- Postman and Postman Agent
+
+# Folder Structure
+- 1. API-M with Petstore-Pizzashack		--> basic exercise with API Manager (monolithic, not micro)
+- 2. API-M Microintegrator			--> exercise with Microintegrator
+- 3. API-M Microgateway				--> exercise with API Manager Microgateway
+
+# How to enable shared directory
+- create vagrant_data directory in your user home directory
+- type this command in a terminal:
+  vagrant plugin install vagrant-vbguest
+- insert these lines in the Vagrantfile:
+  config.vbguest.installer_options = { allow_kernel_upgrade: true }
+	config.vm.synced_folder "~/vagrant_data", "/vagrant_data"
 
 # How to run WSO2 API-Manager
 - open a CMD.exe prompt
@@ -16,13 +30,15 @@ Vagrant Scripts to configure WSO2 Products
 - once it's running, connect to the VM:
   vagrant ssh
   You are username=vagrant, password=vagrant
+- Manual start-up:
 - in the VM, CD to the directory:
   cd /opt/wso2/wso2am/bin
 - (optionally remove all Windows batch files: rm *.bat)
 - in the VM, start the API Manager:
   ./api-manager.sh
 - the application will start, and take about 2-5 minutes to complete startup
-- you know when startup is
+- Automatic start-up
+  There is a system.d configuration that starts up the API Manager automatically. To stop/restart you can use: systemctl stop/start/status api-manager
 - once that is done, open a browser in the host (Windows) and connect in multiple tabs to the URLs shown in the next section
 
 # How to connect to API Manager consoles
@@ -62,3 +78,7 @@ xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key=
 xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.thrift.ssl.url']" -v 'ssl://noded:7712' $XMLFILE
 xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.binary.tcp.url']" -v 'tcp://noded:7612' $XMLFILE
 xmlstarlet ed --inplace -P -u "//adapterConfig[@type='wso2event']/property[@key='default.binary.ssl.url']" -v 'ssl://noded:7712' $XMLFILE
+
+
+# Additional tools
+https://www.yenlo.com/blogs/looking-at-your-wso2-logs-using-rtail-nodejs/

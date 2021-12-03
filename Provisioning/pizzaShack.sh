@@ -9,6 +9,12 @@ if [ ! -d $FILE ]; then
     sudo mkdir /opt/wso2
 fi
 
+DEPLOYMENT_TARGET="$(ls -df /opt/wso2/*/repository/deployment/server/webapps | sed -n \$p)"
+if [ ! -d $DEPLOYMENT_TARGET ]; then
+    echo "\$DEPLOYMENT_TARGET could not be set..."
+    exit 1
+fi
+
 # downloading PizzaShack example for WSO2
 PIZZA=PizzaShack.zip
 if [ ! -f $PIZZA ]; then
@@ -25,7 +31,7 @@ if [ ! -f $PIZZA ]; then
    sed -i 's:<modelVersion>:<version>1.0.0</version><modelVersion>:' $SEDFILE
    mvn -q clean install
    echo "**** Deploying pizza-shack-api..."
-   cp target/*.war /opt/wso2/wso2as/repository/deployment/server/webapps/
+   cp target/*.war $DEPLOYMENT_TARGET
 
    echo "**** Compiling pizza-shack-web..."
    cd /opt/wso2/pizza-shack-web
@@ -34,7 +40,7 @@ if [ ! -f $PIZZA ]; then
    sed -i 's:<modelVersion>:<version>1.0.0</version><modelVersion>:' $SEDFILE
    mvn -q clean install
    echo "**** Deploying pizza-shack-web..."
-   cp target/*.war /opt/wso2/wso2as/repository/deployment/server/webapps/
+   cp target/*.war $DEPLOYMENT_TARGET
 
 else
    echo $PIZZA " is already downloaded."

@@ -1,0 +1,49 @@
+Vagrant.configure("2") do |config|
+	config.vm.define "wso2mi", primary: true do |host|
+		host.vm.box = "centos/8"
+		host.vm.hostname = "wso2mi"
+		host.vm.provider "virtualbox" do |vb|
+			vb.name = "t2b WSO2 micro-integrator (8290)"
+			vb.memory = "4096"
+			vb.cpus = "2"
+			vb.gui = false
+		end
+		
+		host.vm.network "private_network", ip: "192.168.56.13"
+		host.vbguest.installer_options = { allow_kernel_upgrade: true }
+		host.vm.synced_folder "~/vagrant_data", "/vagrant_data"
+		host.vm.provision "basicUtilities",    type: "shell", path: "../Provisioning/basicUtilities.sh"
+		host.vm.provision "oracleJDK",         type: "shell", path: "../Provisioning/oracleJDK.sh"
+
+		host.vm.provision "product-dist-micro-integrator", type: "shell", 
+			path: "../Provisioning/wso2-product-dist.sh",
+			args: ["https://product-dist.wso2.com/products/micro-integrator/4.0.0/wso2mi-4.0.0.zip"]
+		host.vm.provision "systemd-service-micro-integrator", type: "shell", 
+			path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/wso2/wso2mi/bin/micro-integrator.sh"]
+		host.vm.provision "micro-integrator-home", type: "shell",
+			inline: "echo 'export MI_HOME=/opt/wso2/wso2mi' | sudo tee -a /etc/profile.d/envvars.sh"
+
+		host.vm.provision "install-Hospital-Service", type: "shell", inline: <<-SHELL
+			NAME=Hospital-Service
+			DIR="/opt/wso2/$NAME"
+			echo "Install $NAME in $DIR"
+			mkdir $DIR
+			cd $DIR
+			URL=https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar?raw=true
+			wget -q --user-agent="testuser" -O $NAME.jar $URL
+			SCRIPT="$NAME.sh"
+			echo "\$JAVA_HOME/bin/java -jar $NAME.jar" > $SCRIPT
+			chmod a+x $SCRIPT
+			chown vagrant:vagrant *
+		SHELL
+		#host.vm.provision "systemd-service-Hospital-Service", type: "shell", 
+		#	path: "../Provisioning/systemd-service.sh",
+		#	args: ["/opt/wso2/Hospital-Service/Hospital-Service.sh"]
+
+		#host.vm.provision "shell", inline: <<-SHELL
+		#	echo "****** REBOOTING... ******"
+		#	reboot
+		#SHELL
+	end
+end

@@ -1,14 +1,14 @@
-VERSION=3.6.0
+VERSION=3.6.3
 FILE=apache-maven-$VERSION
 
-PROVISION=Maven $VERSION
+PROVISION="Maven $VERSION"
 echo "**************************************************** Provisioning '"$PROVISION"' is starting..."
 
 if [ ! -d /opt/$FILE ]; then
 
   echo "**** Downloading Maven..."
   cd ~
-  wget -q http://www-us.apache.org/dist/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
+  wget -q https://dlcdn.apache.org/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
   tar -zxvf apache-maven-$VERSION-bin.tar.gz
   rm -f apache-maven-$VERSION-bin.tar.gz
 
@@ -19,9 +19,6 @@ if [ ! -d /opt/$FILE ]; then
   sudo ln -s /opt/$FILE /opt/apache-maven
   echo 'export PATH=$PATH:/opt/apache-maven/bin' | sudo tee -a /etc/profile.d/envvars.sh
   source /etc/environment
-  
-  echo "**** Downloading Antlr..."
-  sudo apt-get install -y antlr
   
 fi
 

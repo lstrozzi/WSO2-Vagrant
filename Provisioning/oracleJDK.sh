@@ -1,6 +1,12 @@
 PROVISION="Oracle JDK 1.8_131"
 echo "**************************************************** Provisioning '"$PROVISION"' is starting..."
 
+CACHEDIR=/vagrant_data/products
+
+if [ ! -d "$CACHEDIR" ]; then
+   echo "Creating $CACHEDIR directory..."
+   sudo mkdir -p $CACHEDIR
+fi
 
 FILE=jdk-8u131-linux-x64.tar.gz
 
@@ -12,11 +18,11 @@ if [ ! -d /usr/java ]; then
    fi
    cd /opt/dl
    
-   if [ ! -d /vagrant_data/products/$FILE ]; then
+   if [ ! -d $CACHEDIR/$FILE ]; then
      wget -q -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/$FILE
-	 cp $FILE /vagrant_data/products/
+	 cp $FILE $CACHEDIR/
    else
-     cp /vagrant_data/products/$FILE .
+     cp $CACHEDIR/$FILE .
    fi
 
    if [ -f $FILE ]; then
