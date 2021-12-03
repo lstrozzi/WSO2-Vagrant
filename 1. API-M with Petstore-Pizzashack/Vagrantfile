@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
 
 
 	config.vm.provision "basicUtils",		type: "shell",	path: "../Provisioning/basicUtilities.sh"
+	config.vm.provision "jdk",				type: "shell",	path: "../Provisioning/oracleJDK.sh"
 	config.vm.provision "download-api-manager", type: "shell",
 			path: "../Provisioning/wso2-product-dist.sh",
 			args: ["https://product-dist.wso2.com/products/api-manager/4.0.0/wso2am-4.0.0.zip"]
