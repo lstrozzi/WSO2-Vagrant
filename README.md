@@ -2,9 +2,15 @@
 Vagrant Scripts to configure WSO2 Products
 
 # Required products:
-- Tortoise Git
+- Tortoise Git (incl. Git)
 - Oracle Virtualbox
 - Vagrant
+- Postman and Postman Agent
+
+# Folder Structure
+- 1. API-M with Petstore-Pizzashack		--> basic exercise with API Manager (monolithic, not micro)
+- 2. API-M Microintegrator			--> exercise with Microintegrator
+- 3. API-M Microgateway				--> exercise with API Manager Microgateway
 
 # How to enable shared directory
 - create vagrant_data directory in your user home directory
