@@ -32,7 +32,7 @@ sudo chown -R luca:luca /home/luca/.ssh
 
 cat >/home/luca/start-rtail.sh <<EOF
 #!/bin/sh
-sudo rtail-server --wh $IP4 --wp 8888 &
+sudo rtail-server --wh $IP4 --wp 8889 --uh $IP4 --up 8889 &
 EOF
 chmod a+x /home/luca/start-rtail.sh
 
