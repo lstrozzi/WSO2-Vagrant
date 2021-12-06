@@ -6,7 +6,7 @@ if [ "$(. /etc/os-release; echo $NAME)" = "CentOS Linux" ]; then
 
   if [ ! -f /usr/bin/rtail ]; then
     echo "**** Configuring NodeJS repository..."
-    sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+    sudo curl -sL https://rpm.nodesource.com/setup_14.x | bash -
   
     echo "**** Installing NodeJS..."
     sudo yum install -y nodejs
@@ -25,6 +25,19 @@ elif [ "$(. /etc/os-release; echo $NAME)" = "Ubuntu" ]; then
     echo "**** Installing rtail..."
     sudo npm install -g rtail
 fi
+
+cat >/home/vagrant/start-rtail.sh <<EOF
+#!/bin/sh
+sudo rtail-server --wh $IP4 --wp 8889 --uh $IP4 --up 8889 &
+EOF
+chmod a+x /home/vagrant/start-rtail.sh
+
+cat >/home/vagrant/rtail-wso2am.sh <<EOF
+#!/bin/sh
+nohup tail -f /opt/wso2/wso2am/repository/logs/wso2carbon.log | rtail --mute --host $IP4 --port 8889 --id wso2AM &
+EOF
+chmod a+x /home/vagrant/rtail-wso2am.sh
+
 
 
 echo "**************************************************** Provisioning '"$PROVISION"' is finished."
