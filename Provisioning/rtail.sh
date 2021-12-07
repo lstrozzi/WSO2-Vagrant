@@ -26,17 +26,21 @@ elif [ "$(. /etc/os-release; echo $NAME)" = "Ubuntu" ]; then
     sudo npm install -g rtail
 fi
 
-cat >/home/vagrant/start-rtail.sh <<EOF
-#!/bin/sh
-sudo rtail-server --wh $IP4 --wp 8889 --uh $IP4 --up 8889 &
-EOF
-chmod a+x /home/vagrant/start-rtail.sh
+if [ ! -d /opt/rtail ]; then
+	mkdir /opt/rtail
+fi
 
-cat >/home/vagrant/rtail-wso2am.sh <<EOF
+cat >/opt/rtail/start-rtail.sh <<EOF
 #!/bin/sh
-nohup tail -f /opt/wso2/wso2am/repository/logs/wso2carbon.log | rtail --mute --host $IP4 --port 8889 --id wso2AM &
+rtail-server --wh $IP4 --wp 8889 --uh $IP4 --up 8889
 EOF
-chmod a+x /home/vagrant/rtail-wso2am.sh
+chmod a+x /opt/rtail/start-rtail.sh
+
+cat >/opt/rtail/rtail-wso2am.sh <<EOF
+#!/bin/sh
+nohup tail -f /opt/wso2/wso2am/repository/logs/wso2carbon.log | rtail --mute --host $IP4 --port 8889 --id wso2AM
+EOF
+chmod a+x /opt/rtail/rtail-wso2am.sh
 
 
 
