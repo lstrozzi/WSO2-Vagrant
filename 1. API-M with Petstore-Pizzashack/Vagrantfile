@@ -37,5 +37,7 @@ Vagrant.configure("2") do |config|
 		args: ["/opt/rtail/rtail-wso2am.sh"]
 
 	config.vm.provision "t2bTraining",		type: "shell", path: "t2bTraining.sh"
+	
+	config.vm.provision "test",				type: "shell", path: "TestScript.sh"
     end
 end
