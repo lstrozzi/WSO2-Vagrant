@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
 			vb.gui = false
 		end
 		wso2am.vm.network "forwarded_port", guest: 9443, host: 9443
+		wso2am.vm.network "forwarded_port", guest: 8243, host: 8243
 		wso2am.vm.network "private_network", ip: "192.168.56.12"
 		wso2am.vbguest.installer_options = { allow_kernel_upgrade: true }
 		wso2am.vm.synced_folder "~/vagrant_data", "/vagrant_data"
