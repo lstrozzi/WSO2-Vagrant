@@ -12,16 +12,17 @@ FILE=jdk-8u131-linux-x64.tar.gz
 
 # dowloading Oracle JDK
 if [ ! -d /usr/java ]; then
-   echo "Downloading jdk-8u131-linux-x64.tar.gz..."
    if [ ! -d /opt/dl ]; then
       mkdir /opt/dl
    fi
    cd /opt/dl
    
    if [ ! -d $CACHEDIR/$FILE ]; then
+     echo "Downloading jdk-8u131-linux-x64.tar.gz..."
      wget -q -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/$FILE
 	 cp $FILE $CACHEDIR/
    else
+     echo "Using cached copy of jdk-8u131-linux-x64.tar.gz"
      cp $CACHEDIR/$FILE .
    fi
 
