@@ -6,11 +6,16 @@ echo "**************************************************** Provisioning '"$PROVI
 
 if [ ! -d /opt/$FILE ]; then
 
-  echo "**** Downloading Maven..."
+  echo "**** Downloading Maven "$VERSION"..."
+  cd /vagrant_data/products
+  
+  if [ ! -f apache-maven-$VERSION-bin.tar.gz ]; then
+	  wget --no-check-certificate https://dlcdn.apache.org/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
+  fi
+  
+  cp apache-maven-$VERSION-bin.tar.gz ~
   cd ~
-  wget -q https://dlcdn.apache.org/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
   tar -zxvf apache-maven-$VERSION-bin.tar.gz
-  rm -f apache-maven-$VERSION-bin.tar.gz
 
   # Configure Maven
   echo "**** Configuring Maven..."
