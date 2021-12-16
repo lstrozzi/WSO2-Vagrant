@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
 		end
 		wso2am.vm.network "forwarded_port", guest: 9443, host: 9443
 		wso2am.vm.network "forwarded_port", guest: 8243, host: 8243
+		wso2am.vm.network "forwarded_port", guest: 9095, host: 9095
 		wso2am.vm.network "private_network", ip: "192.168.56.12"
 		wso2am.vbguest.installer_options = { allow_kernel_upgrade: true }
 		wso2am.vm.synced_folder "~/vagrant_data", "/vagrant_data"
@@ -28,7 +29,7 @@ Vagrant.configure("2") do |config|
 			path: "../Provisioning/wso2-product-dist.sh",
 			args: ["https://product-dist.wso2.com/products/micro-gateway/toolkit/3.2.0/eula/wso2am-micro-gw-toolkit-linux-3.2.0.zip"]
 		wso2am.vm.provision "profile.d",		type: "shell", path: "wso2am-micro-gw-profile.sh"
-		wso2am.vm.provision "petstore",		type: "shell", path: "init_and_build_petstore.sh"
+		wso2am.vm.provision "petstore",			type: "shell", path: "init_and_build_petstore.sh"
 
 	end
 end

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-# https://mg.docs.wso2.com/en/latest/getting-started/quick-start-guide/quick-start-guide-binary/
+
+PROVISION="Configuring Petstore"
+echo "**************************************************** Provisioning '"$PROVISION"' is starting..."
+
+
+echo "Following instructions from: https://mg.docs.wso2.com/en/latest/getting-started/quick-start-guide/quick-start-guide-binary/"
 micro-gw init petstore -a https://raw.githubusercontent.com/wso2/product-microgateway/master/samples/petstore_v3.yaml
 micro-gw build petstore
 gateway petstore/target/petstore.jar > gateway.out &
@@ -17,3 +22,6 @@ TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRt
 export TOKEN
 
 curl -X GET "https://localhost:9095/api/v3/pet/findByStatus?status=available" -H "accept: application/json" -H "api_key:$TOKEN" -k
+
+
+echo "**************************************************** Provisioning '"$PROVISION"' is finished."
