@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 	config.vm.define "wso2mi", primary: true do |host|
-		host.vm.box = "centos/8"
+		host.vm.box = "centos/7"
 		host.vm.hostname = "wso2mi"
 		host.vm.provider "virtualbox" do |vb|
 			vb.name = "t2b WSO2 micro-integrator (8290)"
