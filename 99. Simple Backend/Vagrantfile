@@ -18,14 +18,16 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "basicUtils",		type: "shell",	path: "../Provisioning/basicUtilities.sh"
 	config.vm.provision "jdk",				type: "shell",	path: "../Provisioning/oracleJDK.sh"
 	config.vm.provision "rtail",			type: "shell",	path: "../Provisioning/rtail.sh"
-
+	# config.vm.provision "maven",			type: "shell",	path: "../Provisioning/maven.sh"
 
 	# config.vm.provision "systemd-svc-rtail",type: "shell",	path: "../Provisioning/systemd-service.sh",
 	# 	args: ["/opt/rtail/start-rtail.sh"]
 	# config.vm.provision "systemd-svc-rtail-apim",type: "shell",	path: "../Provisioning/systemd-service.sh",
 	# 	args: ["/opt/rtail/rtail-backend.sh"]
 
-	config.vm.provision "deployBackend",	type: "shell", path: "DeployBackend.sh"	
+	config.vm.provision "deployBackend",	type: "shell", path: "DeployBackend.sh"
+	config.vm.provision "systemd-runBackend",type: "shell",path: "../Provisioning/systemd-service.sh",
+		args: ["/vagrant/src/BackEnd/runBackend.sh"]	
 	config.vm.provision "testBackend",		type: "shell", path: "TestBackend.sh"
     end
 end
