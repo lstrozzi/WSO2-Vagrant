@@ -1,0 +1,31 @@
+Vagrant.configure("2") do |config|
+    config.vm.define "backend" do |backend|
+	backend.vm.box = "centos/7"
+	backend.vm.hostname = "backend"
+	backend.vm.provider "virtualbox" do |vb|
+	    vb.name = "t2b Simple Backend"
+	    vb.memory = "2048"
+	    vb.cpus = "2"
+	    vb.gui = false
+	end
+
+	# config.vm.network "forwarded_port", guest: 9443, host: 9443
+	config.vm.network "private_network", ip: "192.168.56.20"
+	
+	config.vbguest.installer_options = { allow_kernel_upgrade: true }
+	config.vm.synced_folder "~/vagrant_data", "/vagrant_data"	
+
+	config.vm.provision "basicUtils",		type: "shell",	path: "../Provisioning/basicUtilities.sh"
+	config.vm.provision "jdk",				type: "shell",	path: "../Provisioning/oracleJDK.sh"
+	config.vm.provision "rtail",			type: "shell",	path: "../Provisioning/rtail.sh"
+
+
+	# config.vm.provision "systemd-svc-rtail",type: "shell",	path: "../Provisioning/systemd-service.sh",
+	# 	args: ["/opt/rtail/start-rtail.sh"]
+	# config.vm.provision "systemd-svc-rtail-apim",type: "shell",	path: "../Provisioning/systemd-service.sh",
+	# 	args: ["/opt/rtail/rtail-backend.sh"]
+
+	config.vm.provision "deployBackend",	type: "shell", path: "DeployBackend.sh"	
+	config.vm.provision "testBackend",		type: "shell", path: "TestBackend.sh"
+    end
+end
