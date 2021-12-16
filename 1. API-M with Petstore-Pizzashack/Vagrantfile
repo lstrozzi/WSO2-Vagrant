@@ -1,14 +1,12 @@
 Vagrant.configure("2") do |config|
     config.vm.define "wso2am" do |wso2am|
-	wso2am.vm.box = "centos/7"
+	wso2am.vm.box = "centos/8"
 	wso2am.vm.hostname = "wso2am"
-	wso2am.vm.provider "vmware_desktop" do |vb|
-	    # vb.name = "t2b WSO2 API Manager 1 (9443)"
+	wso2am.vm.provider "virtualbox" do |vb|
+	    vb.name = "t2b WSO2 API Manager 1 (9443)"
 	    vb.memory = "4096"
 	    vb.cpus = "2"
-		# VmWare-specific vb.vmx["memsize"] = "4096"
-		# VmWare-specific vb.vmx["numvcpus"] = "2"
-	    vb.gui = true
+	    vb.gui = false
 	end
 
 	config.vm.network "forwarded_port", guest: 9443, host: 9443
