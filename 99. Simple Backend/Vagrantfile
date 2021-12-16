@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
 
 	config.vm.provision "deployBackend",	type: "shell", path: "DeployBackend.sh"
 	config.vm.provision "systemd-runBackend",type: "shell",path: "../Provisioning/systemd-service.sh",
-		args: ["/vagrant/src/BackEnd/runBackend.sh"]	
+		args: ["/vagrant/src/BackEnd/runBackend.sh"]
 	config.vm.provision "testBackend",		type: "shell", path: "TestBackend.sh"
     end
 end
