@@ -9,7 +9,7 @@ if [ ! -d src ]; then
 fi
 
 echo "* Compiling Java Backend..."
-cd src/BackEnd
+cd src
 javac JavaHTTPServer.java
 echo "* ...ok"
 

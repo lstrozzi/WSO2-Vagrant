@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-cd /home/vagrant/src/BackEnd
+cd /home/vagrant/src
 java JavaHTTPServer
