@@ -183,6 +183,7 @@
     <element xsi:type="archimate:AssignmentRelationship" id="6d33191f-460b-44f5-bdf9-c93a585f57e3" source="b5b25a4f-f6f2-47ff-8cf4-b0ec79b7fdaf" target="9864174a-b66e-419c-b51e-fe5d3128e40d"/>
     <element xsi:type="archimate:FlowRelationship" id="f98cb676-8e27-4229-b893-8f03af5b5748" source="id-6db0195c12d04147845ab19079e375fb" target="9864174a-b66e-419c-b51e-fe5d3128e40d"/>
     <element xsi:type="archimate:FlowRelationship" name="8080" id="1c7846a7-70a1-4a4b-9aec-2963751dc968" source="9864174a-b66e-419c-b51e-fe5d3128e40d" target="80e05a61-28fb-41e1-bb71-5d9dca85aee1"/>
+    <element xsi:type="archimate:FlowRelationship" name="UNSECURE CONNECTION (8080)" id="619176da-d074-4b4c-8bcf-29c6c1024bde" source="id-cff98b12b69d4232889686376b0e85b3" target="80e05a61-28fb-41e1-bb71-5d9dca85aee1"/>
   </folder>
   <folder name="Views" id="id-dc74e79e8d374f1ba0d07fba3719cbcf" type="diagrams">
     <element xsi:type="archimate:ArchimateDiagramModel" name="1. API-M with Pizzashack" id="id-d79a301b5842491eb58b5f17d38f5828">
@@ -537,26 +538,18 @@
           <sourceConnection xsi:type="archimate:Connection" id="2e480fcc-71bf-444a-bc56-d6a9bc96cce5" source="b0594161-c03c-49c9-93aa-410f40f7ee37" target="362008e7-785f-49b4-90c2-53e5f7602c84" archimateRelationship="id-4359f6bd424b40bfaefc9a8362af07f9"/>
           <sourceConnection xsi:type="archimate:Connection" id="3cf5dbc3-05a2-4d00-b5a6-8483ebe4aa38" source="b0594161-c03c-49c9-93aa-410f40f7ee37" target="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" archimateRelationship="b07ee36f-8960-4f22-a566-16f7d52074bc"/>
           <child xsi:type="archimate:DiagramObject" id="aaa1bb55-97a6-44ac-9466-cfe1a2811749" targetConnections="c4068e80-3c87-405d-890c-397fc4a415eb" archimateElement="id-2b04e05177c94b5690e7c3e63c617c86">
-            <bounds x="11" y="48" width="205" height="469"/>
-            <sourceConnection xsi:type="archimate:Connection" id="37d000eb-cfc9-45fe-a0fb-f13e6329351d" source="aaa1bb55-97a6-44ac-9466-cfe1a2811749" target="9c45ce13-a123-4f54-ac8a-f0a35f4f0a09" archimateRelationship="id-da94515b2d5240818ae132da6479b884"/>
-            <sourceConnection xsi:type="archimate:Connection" id="62754d68-cdfd-4ca6-af87-5ead217aebd0" source="aaa1bb55-97a6-44ac-9466-cfe1a2811749" target="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" archimateRelationship="id-1b854b6c65684a3ba8d172f421193db1">
-              <bendpoint startX="127" startY="-48" endX="-78" endY="-192"/>
-            </sourceConnection>
-            <child xsi:type="archimate:DiagramObject" id="9c45ce13-a123-4f54-ac8a-f0a35f4f0a09" targetConnections="37d000eb-cfc9-45fe-a0fb-f13e6329351d" archimateElement="id-fde88b2314fd49f7901b586ab7d99373">
-              <bounds x="60" y="324" width="120" height="55"/>
-              <sourceConnection xsi:type="archimate:Connection" id="fd1e4bd5-4c04-47af-bd50-93dde36a4135" source="9c45ce13-a123-4f54-ac8a-f0a35f4f0a09" target="362008e7-785f-49b4-90c2-53e5f7602c84" archimateRelationship="id-3f4e3f68ab6d4872ad77ed46e3e9209a"/>
-              <sourceConnection xsi:type="archimate:Connection" id="56b58876-12ae-46e1-9a3e-e699d9a6afa7" source="9c45ce13-a123-4f54-ac8a-f0a35f4f0a09" target="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" archimateRelationship="ddbc40f7-8bfb-4609-ade4-e88eff80e1e2"/>
-            </child>
+            <bounds x="11" y="48" width="206" height="277"/>
+            <sourceConnection xsi:type="archimate:Connection" id="62754d68-cdfd-4ca6-af87-5ead217aebd0" source="aaa1bb55-97a6-44ac-9466-cfe1a2811749" target="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" archimateRelationship="id-1b854b6c65684a3ba8d172f421193db1"/>
           </child>
           <child xsi:type="archimate:Note" id="67ddf547-7612-41cc-9513-5b4a5c95a231" textAlignment="1">
             <bounds x="276" y="624" width="185" height="80"/>
             <content>192.168.56.1</content>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="362008e7-785f-49b4-90c2-53e5f7602c84" targetConnections="2e480fcc-71bf-444a-bc56-d6a9bc96cce5 fd1e4bd5-4c04-47af-bd50-93dde36a4135" archimateElement="id-cff98b12b69d4232889686376b0e85b3">
-            <bounds x="72" y="546" width="120" height="55"/>
+          <child xsi:type="archimate:DiagramObject" id="362008e7-785f-49b4-90c2-53e5f7602c84" targetConnections="2e480fcc-71bf-444a-bc56-d6a9bc96cce5" archimateElement="id-cff98b12b69d4232889686376b0e85b3">
+            <bounds x="11" y="348" width="206" height="109"/>
             <sourceConnection xsi:type="archimate:Connection" id="5218235b-4467-4c18-b3bb-412b8b55b2b2" source="362008e7-785f-49b4-90c2-53e5f7602c84" target="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" archimateRelationship="91ee223f-f915-4bde-964e-c9820a0a8989"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" targetConnections="62754d68-cdfd-4ca6-af87-5ead217aebd0 3cf5dbc3-05a2-4d00-b5a6-8483ebe4aa38 5218235b-4467-4c18-b3bb-412b8b55b2b2 56b58876-12ae-46e1-9a3e-e699d9a6afa7" archimateElement="f91fe579-2d04-4181-9140-28ab2dedce7d">
+          <child xsi:type="archimate:DiagramObject" id="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" targetConnections="62754d68-cdfd-4ca6-af87-5ead217aebd0 3cf5dbc3-05a2-4d00-b5a6-8483ebe4aa38 5218235b-4467-4c18-b3bb-412b8b55b2b2" archimateElement="f91fe579-2d04-4181-9140-28ab2dedce7d">
             <bounds x="264" y="48" width="108" height="553"/>
             <sourceConnection xsi:type="archimate:Connection" id="cce96396-6476-429e-898c-714530e04033" source="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" target="9f345e5b-5983-4f1d-95e6-69c22b1895c8" archimateRelationship="id-31f53eabaa90417eb8be1d974b5c9814"/>
             <sourceConnection xsi:type="archimate:Connection" id="76eeeae4-ba09-4101-a362-8ba46d49f7be" source="e34a6d39-c206-4bb7-96b1-1b3db9d5259a" target="2d213f39-80b9-4f5b-90f0-e78a9a73a989" archimateRelationship="id-aa9aba4504b2453091c128549888e86b"/>
@@ -612,7 +605,7 @@
               </child>
               <child xsi:type="archimate:DiagramObject" id="48fb337f-b13b-41d4-8e71-82601642909e" targetConnections="5ec49e31-8467-453e-aafc-f1f719b3714f aa20b9d1-9e9f-4827-8ac1-8e86a38c6125 6d30c1f7-3bac-4da7-b256-af3c6cee7c75" archimateElement="9864174a-b66e-419c-b51e-fe5d3128e40d">
                 <bounds x="40" y="144" width="201" height="55"/>
-                <sourceConnection xsi:type="archimate:Connection" id="9841df47-8871-42f2-abd6-55f0f2e0ed1d" source="48fb337f-b13b-41d4-8e71-82601642909e" target="5147b00d-b5eb-4932-8fee-ace05343cbbd" archimateRelationship="1c7846a7-70a1-4a4b-9aec-2963751dc968">
+                <sourceConnection xsi:type="archimate:Connection" id="9841df47-8871-42f2-abd6-55f0f2e0ed1d" targetConnections="6b4c652a-ba87-48ba-a76e-3e33ffcc7bbc" source="48fb337f-b13b-41d4-8e71-82601642909e" target="5147b00d-b5eb-4932-8fee-ace05343cbbd" archimateRelationship="1c7846a7-70a1-4a4b-9aec-2963751dc968">
                   <bendpoint startX="52" startY="165" endX="78" endY="-171"/>
                 </sourceConnection>
               </child>
@@ -649,6 +642,11 @@
           <child xsi:type="archimate:DiagramObject" id="caa1384f-5b32-4209-a129-c683032fa31a" targetConnections="3ca5f733-131b-43a7-8367-be49bc49a2cc 4e2f3a15-1178-4232-ace9-ca01f63767f8 ce679f22-475f-44c8-bc67-79785e25bf18" archimateElement="ebfe8a3e-92c6-4c32-97a1-4974cc7e87dc">
             <bounds x="12" y="468" width="120" height="55"/>
           </child>
+          <child xsi:type="archimate:Note" id="28bba0e7-ad61-4e5e-8c6c-ead367e8ae24" textAlignment="1" fillColor="#ff80ff">
+            <bounds x="435" y="574" width="185" height="63"/>
+            <sourceConnection id="6b4c652a-ba87-48ba-a76e-3e33ffcc7bbc" source="28bba0e7-ad61-4e5e-8c6c-ead367e8ae24" target="9841df47-8871-42f2-abd6-55f0f2e0ed1d"/>
+            <content>This call is allowed, because WSO2 API-M is allowed to call the backend</content>
+          </child>
         </child>
         <child xsi:type="archimate:DiagramObject" id="296680d0-f043-4676-8747-0e86ba284bd2" targetConnections="50697456-cae7-4a2d-8671-2fbe4af15dce" archimateElement="id-c42b615a58964b0bb40b76fda65bdbea">
           <bounds x="12" y="24" width="409" height="841"/>
@@ -661,8 +659,8 @@
               <bendpoint startX="126" startY="-192" endX="-72" endY="-222"/>
             </sourceConnection>
             <sourceConnection xsi:type="archimate:Connection" id="a207852a-07a3-4dcd-95ae-aae40b99aa4b" source="f1a455bf-4106-44d7-97e9-38d1f971c103" target="603acea2-d5f0-42a0-8c56-4cd01ec11a1d" archimateRelationship="4c1ed3dc-9d19-4d02-9d74-22534a1792ee"/>
-            <sourceConnection xsi:type="archimate:Connection" id="07e23f2d-ccd9-4cb9-82d0-e880c8e0df79" lineColor="#ff80ff" source="f1a455bf-4106-44d7-97e9-38d1f971c103" target="5147b00d-b5eb-4932-8fee-ace05343cbbd" archimateRelationship="1614a198-8606-44bb-b83c-4aa5ecc0a1b5">
-              <bendpoint startX="186" startY="288" endX="-534" endY="-3"/>
+            <sourceConnection xsi:type="archimate:Connection" id="07e23f2d-ccd9-4cb9-82d0-e880c8e0df79" lineColor="#ff0000" source="f1a455bf-4106-44d7-97e9-38d1f971c103" target="5147b00d-b5eb-4932-8fee-ace05343cbbd" archimateRelationship="1614a198-8606-44bb-b83c-4aa5ecc0a1b5">
+              <bendpoint startX="162" startY="312" endX="-558" endY="21"/>
             </sourceConnection>
           </child>
           <child xsi:type="archimate:Note" id="d3bb4eb8-7e36-477f-b769-fa3186729361" textAlignment="1">
@@ -673,6 +671,9 @@
             <bounds x="132" y="240" width="85" height="217"/>
             <sourceConnection xsi:type="archimate:Connection" id="f803d50e-06db-483c-b319-9c1a838fe07d" source="9fa08d9c-a016-4aa8-9290-ba6886b3fccb" target="4406e769-07af-4630-8bda-3872a22a6b1d" archimateRelationship="id-820811076e08478da1797551b477a6ca">
               <bendpoint startX="78" startY="36" endX="-66" endY="84"/>
+            </sourceConnection>
+            <sourceConnection xsi:type="archimate:Connection" id="6bbee0e1-b0cb-4ffb-ba7e-ba5c0a4a6234" lineColor="#ff0000" source="9fa08d9c-a016-4aa8-9290-ba6886b3fccb" target="5147b00d-b5eb-4932-8fee-ace05343cbbd" archimateRelationship="619176da-d074-4b4c-8bcf-29c6c1024bde">
+              <bendpoint startX="30" startY="360" endX="-582" endY="-15"/>
             </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="4406e769-07af-4630-8bda-3872a22a6b1d" targetConnections="bd057753-be9a-4f40-9b3a-486e9fe9da4e 687ca48f-a7a1-49e5-921c-1a47f54b243a f803d50e-06db-483c-b319-9c1a838fe07d" archimateElement="f91fe579-2d04-4181-9140-28ab2dedce7d">
@@ -699,7 +700,7 @@
             <bounds x="360" y="36" width="157" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="bcba589c-e433-4c3a-8b25-fc1cfe6055fa" source="fb45d728-ac71-4c28-8204-c5012d09b4b2" target="5147b00d-b5eb-4932-8fee-ace05343cbbd" archimateRelationship="eb6fc716-d50b-4289-a7dd-67e94d5267dd"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="5147b00d-b5eb-4932-8fee-ace05343cbbd" targetConnections="e317850b-cbf0-498e-a899-ae18a3448acb bcba589c-e433-4c3a-8b25-fc1cfe6055fa 07e23f2d-ccd9-4cb9-82d0-e880c8e0df79 2d831e7d-d33c-4078-8d89-b1ae0b240843 9841df47-8871-42f2-abd6-55f0f2e0ed1d" archimateElement="80e05a61-28fb-41e1-bb71-5d9dca85aee1">
+          <child xsi:type="archimate:DiagramObject" id="5147b00d-b5eb-4932-8fee-ace05343cbbd" targetConnections="e317850b-cbf0-498e-a899-ae18a3448acb bcba589c-e433-4c3a-8b25-fc1cfe6055fa 07e23f2d-ccd9-4cb9-82d0-e880c8e0df79 2d831e7d-d33c-4078-8d89-b1ae0b240843 9841df47-8871-42f2-abd6-55f0f2e0ed1d 6bbee0e1-b0cb-4ffb-ba7e-ba5c0a4a6234" archimateElement="80e05a61-28fb-41e1-bb71-5d9dca85aee1">
             <bounds x="24" y="36" width="301" height="55"/>
           </child>
           <child xsi:type="archimate:Note" id="5a02bca1-89f3-4cc2-8795-68a3a1aad356" textAlignment="1">
@@ -713,9 +714,11 @@
             <content>UNSECURED Backend API!!! The goal is that it should be HIDDEN in a protected network, and only through the API Gataway we can reach it with full security</content>
           </child>
         </child>
-        <child xsi:type="archimate:Note" id="4723715f-ea6f-4995-a7d9-ac990451732d" textAlignment="1" fillColor="#ff80ff">
-          <bounds x="457" y="707" width="120" height="134"/>
-          <content>THERE SHOULD BE A CLOSED FIREWALL HERE</content>
+        <child xsi:type="archimate:Note" id="4723715f-ea6f-4995-a7d9-ac990451732d" textAlignment="1" fillColor="#ff8080">
+          <bounds x="360" y="696" width="217" height="145"/>
+          <content>These calls are only allowed in a Development Environment, in order to directly test the Backend with the browser or Postman.&#xD;
+&#xD;
+In Production these calls ARE NOT ALLOWED and a Firewall is blocking access to the Simple Backend machine!</content>
         </child>
       </child>
     </element>
