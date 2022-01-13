@@ -1,5 +1,8 @@
 Vagrant.configure("2") do |config|
+
 	config.vm.define "wso2amMicro", primary: true do |wso2amMicro|
+
+		# Basic VM configuration
 		wso2amMicro.vm.box = "centos/7"
 		wso2amMicro.vm.hostname = "wso2amMicro"
 		wso2amMicro.vm.provider "virtualbox" do |vb|
@@ -8,28 +11,47 @@ Vagrant.configure("2") do |config|
 			vb.cpus = "4"
 			vb.gui = false
 		end
-		# wso2amMicro.vm.network "forwarded_port", guest: 9443, host: 9443
+		
+		# Network configuration
+		wso2amMicro.vm.network "forwarded_port", guest: 9443, host: 9443
 		# wso2amMicro.vm.network "forwarded_port", guest: 8243, host: 8243
 		# wso2amMicro.vm.network "forwarded_port", guest: 9095, host: 9095
 		wso2amMicro.vm.network "private_network", ip: "192.168.56.12"
+		
+		# Special virtualbox configuration
 		wso2amMicro.vbguest.installer_options = { allow_kernel_upgrade: true }
 		wso2amMicro.vm.synced_folder "~/vagrant_data", "/vagrant_data"
+		
+		# Provisioning: system software and tools installation
 		wso2amMicro.vm.provision "basicUtilities",    type: "shell", path: "../Provisioning/basicUtilities.sh"
 		wso2amMicro.vm.provision "oracleJDK",         type: "shell", path: "../Provisioning/oracleJDK.sh"
-		wso2amMicro.vm.provision "wso2AM",			type: "shell", path: "../Provisioning/wso2AM.sh"
-		wso2amMicro.vm.provision "configure",		type: "shell", path: "configure.sh"
-		wso2amMicro.vm.provision "apictl",			type: "shell",	path: "../Provisioning/apictl.sh"
+		wso2amMicro.vm.provision "wso2AM",			  type: "shell", path: "../Provisioning/wso2AM.sh"
+		wso2amMicro.vm.provision "configure",		  type: "shell", path: "configure.sh"
+		wso2amMicro.vm.provision "apictl",			  type: "shell", path: "../Provisioning/apictl.sh"
+		wso2amMicro.vm.provision "rtail",			  type: "shell", path: "../Provisioning/rtail.sh"
+
+		# Provisioning: services needed to automatically start WSO2 and associated tools
 		wso2amMicro.vm.provision "systemd-service",	type: "shell",
 			path: "../Provisioning/systemd-service.sh",
 			args: ["/opt/wso2/wso2amMicro/bin/api-manager.sh"]
 		wso2amMicro.vm.provision "product-dist-runtime", type: "shell",
 			path: "../Provisioning/wso2-product-dist.sh",
-			args: ["https://product-dist.wso2.com/products/micro-gateway/runtime/3.2.3/wso2amMicro-micro-gw-linux-3.2.3.zip"]
+			args: ["https://product-dist.wso2.com/products/micro-gateway/runtime/3.2.3/wso2am-micro-gw-linux-3.2.3.zip"]
 		wso2amMicro.vm.provision "product-dist-toolkit", type: "shell",
 			path: "../Provisioning/wso2-product-dist.sh",
-			args: ["https://product-dist.wso2.com/products/micro-gateway/toolkit/3.2.0/eula/wso2amMicro-micro-gw-toolkit-linux-3.2.0.zip"]
-		wso2amMicro.vm.provision "profile.d",		type: "shell", path: "wso2amMicro-micro-gw-profile.sh"
-		wso2amMicro.vm.provision "petstore",			type: "shell", path: "init_and_build_petstore.sh"
+			args: ["https://product-dist.wso2.com/products/micro-gateway/toolkit/3.2.0/eula/wso2am-micro-gw-toolkit-linux-3.2.0.zip"]
+			
+		# Provisioning: Custom Scripts for this Virtual Machine
+		wso2amMicro.vm.provision "profile.d",		  type: "shell", path: "wso2amMicro-micro-gw-profile.sh"
+		wso2amMicro.vm.provision "petstore",		  type: "shell", path: "init_and_build_petstore.sh"
+
+		# Provisioning: services needed to automatically start WSO2 and associated tools
+		config.vm.provision "systemd-svc-api-m",type: "shell",	path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/wso2/wso2am/bin/api-manager.sh"]
+		config.vm.provision "systemd-svc-rtail",type: "shell",	path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/rtail/start-rtail.sh"]
+		config.vm.provision "systemd-svc-rtail-apim",type: "shell",	path: "../Provisioning/systemd-service.sh",
+			args: ["/opt/rtail/rtail-wso2am.sh"]
 
 	end
 end
