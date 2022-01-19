@@ -1,5 +1,7 @@
 Vagrant.configure("2") do |config|
 	config.vm.define "wso2mi", primary: true do |host|
+
+		# Basic VM configuration
 		host.vm.box = "centos/7"
 		host.vm.hostname = "wso2mi"
 		host.vm.provider "virtualbox" do |vb|
@@ -9,12 +11,18 @@ Vagrant.configure("2") do |config|
 			vb.gui = false
 		end
 		
+		# Network configuration
 		host.vm.network "private_network", ip: "192.168.56.13"
+
+		# Special virtualbox configuration
 		host.vbguest.installer_options = { allow_kernel_upgrade: true }
 		host.vm.synced_folder "~/vagrant_data", "/vagrant_data"
+		
+		# Provisioning: system software and tools installation
 		host.vm.provision "basicUtilities",    type: "shell", path: "../Provisioning/basicUtilities.sh"
 		host.vm.provision "oracleJDK",         type: "shell", path: "../Provisioning/oracleJDK.sh"
 
+		# Provisioning: services needed to automatically start WSO2 and associated tools
 		host.vm.provision "product-dist-micro-integrator", type: "shell", 
 			path: "../Provisioning/wso2-product-dist.sh",
 			args: ["https://product-dist.wso2.com/products/micro-integrator/4.0.0/wso2mi-4.0.0.zip"]
@@ -24,6 +32,7 @@ Vagrant.configure("2") do |config|
 		host.vm.provision "micro-integrator-home", type: "shell",
 			inline: "echo 'export MI_HOME=/opt/wso2/wso2mi' | sudo tee -a /etc/profile.d/envvars.sh"
 
+		# Provisioning: examples from WSO2
 		host.vm.provision "install-Hospital-Service", type: "shell", inline: <<-SHELL
 			NAME=Hospital-Service
 			DIR="/opt/wso2/$NAME"
@@ -37,13 +46,18 @@ Vagrant.configure("2") do |config|
 			chmod a+x $SCRIPT
 			chown vagrant:vagrant *
 		SHELL
+		
 		#host.vm.provision "systemd-service-Hospital-Service", type: "shell", 
 		#	path: "../Provisioning/systemd-service.sh",
 		#	args: ["/opt/wso2/Hospital-Service/Hospital-Service.sh"]
+		
+		# Provisioning: custom provisioning of this virtual machine
+		host.vm.provision "configure", type: "shell", path: "configure.sh"
 
-		#host.vm.provision "shell", inline: <<-SHELL
-		#	echo "****** REBOOTING... ******"
-		#	reboot
-		#SHELL
+		# Provisioning: the first time that a new Virtual Machine is created, we force a reboot, just to be sure
+		host.vm.provision "shell", inline: <<-SHELL
+			echo "****** REBOOTING... ******"
+			reboot
+		SHELL
 	end
 end
