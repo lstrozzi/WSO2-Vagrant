@@ -23,14 +23,14 @@ Vagrant.configure("2") do |config|
 		host.vm.provision "oracleJDK",         type: "shell", path: "../Provisioning/oracleJDK.sh"
 
 		# Provisioning: services needed to automatically start WSO2 and associated tools
-		host.vm.provision "product-dist-micro-integrator", type: "shell", 
+		host.vm.provision "product-dist-ent-integrator", type: "shell", 
 			path: "../Provisioning/wso2-product-dist.sh",
-			args: ["https://product-dist.wso2.com/downloads/enterprise-integrator/7.1.0/downloader/wso2ei-linux-installer-x64-7.1.0.rpm"]
+			args: ["https://product-dist.wso2.com/products/enterprise-integrator/6.6.0/wso2ei-6.6.0.zip"]
+		host.vm.provision "ent-home", type: "shell",
+			inline: "echo 'export EI_HOME=/opt/wso2/wso2ei' | sudo tee -a /etc/profile.d/envvars.sh"
 		host.vm.provision "systemd-service-enterprise-integrator", type: "shell", 
 			path: "../Provisioning/systemd-service.sh",
 			args: ["/opt/wso2/wso2ei/bin/integrator.sh"]
-		host.vm.provision "micro-integrator-home", type: "shell",
-			inline: "echo 'export EI_HOME=/opt/wso2/wso2ei' | sudo tee -a /etc/profile.d/envvars.sh"
 
 		# Provisioning: custom provisioning of this virtual machine
 		host.vm.provision "configure", type: "shell", path: "configure.sh"
