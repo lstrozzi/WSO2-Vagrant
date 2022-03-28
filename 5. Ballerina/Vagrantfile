@@ -1,0 +1,38 @@
+Vagrant.configure("2") do |config|
+
+	# Basic VM configuration
+    config.vm.define "ballerina" do |ballerina|
+	ballerina.vm.box = "ubuntu/bionic64"
+	ballerina.vm.hostname = "ballerina"
+	ballerina.vm.provider "virtualbox" do |vb|
+	    vb.name = "t2b Ballerina"
+	    vb.memory = "8192"
+	    vb.cpus = "4"
+	    vb.gui = false
+	end
+
+	# Network configuration
+	# config.vm.network "forwarded_port", guest: 9443, host: 9443
+	# config.vm.network "forwarded_port", guest: 8243, host: 8243
+	# config.vm.network "forwarded_port", guest: 8244, host: 8244
+	# config.vm.network "forwarded_port", guest: 8889, host: 8889
+	config.vm.network "private_network", ip: "192.168.56.20"
+	
+	# Special virtualbox configuration
+	config.vbguest.installer_options = { allow_kernel_upgrade: true }
+	config.vm.synced_folder "~/vagrant_data", "/vagrant_data"	
+
+	# Provisioning: system software and tools installation
+	config.vm.provision "basicUtils",		type: "shell",	path: "../Provisioning/basicUtilities.sh"
+	config.vm.provision "jdk",				type: "shell",	path: "../Provisioning/oracleJDK.sh"
+	# config.vm.provision "rtail",			type: "shell",	path: "../Provisioning/rtail.sh"
+	# config.vm.provision "apictl",			type: "shell",	path: "../Provisioning/apictl.sh"
+	# config.vm.provision "maven",			type: "shell",	path: "../Provisioning/maven.sh"
+	# config.vm.provision "pizza",			type: "shell",	path: "../Provisioning/pizzaShack.sh"
+	config.vm.provision "ballerina",		type: "shell",	path: "../Provisioning/ballerina.sh"
+	
+	# Provisioning: Custom Scripts for this Virtual Machine
+	# config.vm.provision "t2bTraining",		type: "shell", path: "t2bTraining.sh"
+	# config.vm.provision "test",				type: "shell", path: "TestScript.sh"
+    end
+end
