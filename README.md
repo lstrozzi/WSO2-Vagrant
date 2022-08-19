@@ -13,7 +13,7 @@ Vagrant Scripts to configure WSO2 Products
 - 2. API-M Microintegrator			--> exercise with Microintegrator
 - 3. API-M Microgateway				--> exercise with API Manager Microgateway
 
-# How to enable shared directory
+# How to enable shared directory (optional)
 - create vagrant_data directory in your user home directory
 - type this command in a terminal:
   vagrant plugin install vagrant-vbguest
