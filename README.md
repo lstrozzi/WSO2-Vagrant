@@ -6,6 +6,7 @@ Vagrant Scripts to configure WSO2 Products
 - Oracle Virtualbox
 - Vagrant
 - Postman and Postman Agent
+- Archi (https://www.archimatetool.com/download/)
 
 # Folder Structure
 - 1. API-M with Petstore-Pizzashack		--> basic exercise with API Manager (monolithic, not micro)
