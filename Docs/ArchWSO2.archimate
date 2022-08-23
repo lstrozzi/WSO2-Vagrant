@@ -225,6 +225,7 @@
     <element xsi:type="archimate:RealizationRelationship" id="d88ef289-2428-4652-9196-e0d6646ff111" source="id-c42b615a58964b0bb40b76fda65bdbea" target="2353e7d3-a32e-4a0e-b59a-55827c50f649"/>
     <element xsi:type="archimate:AssignmentRelationship" id="1494af3c-07bf-454a-9c8b-8e888f66db50" source="id-797c19f69bed4a858855630e6276d2cd" target="a302bcf8-7b32-4eb2-9916-a2d86d093b99"/>
     <element xsi:type="archimate:AssociationRelationship" id="811398c1-46b3-452a-a9fb-4943b2c5b479" source="87f5a711-dde0-4779-95db-78bf36686b53" target="00bfb5ad-f639-4e00-a3ad-dd30cf0e4a17"/>
+    <element xsi:type="archimate:FlowRelationship" name="8243" id="9de5443f-83fc-4caa-aeba-9863feb96fa5" source="id-2b04e05177c94b5690e7c3e63c617c86" target="id-6db0195c12d04147845ab19079e375fb"/>
   </folder>
   <folder name="Views" id="id-dc74e79e8d374f1ba0d07fba3719cbcf" type="diagrams">
     <element xsi:type="archimate:ArchimateDiagramModel" name="1a. API-M with Pizzashack" id="id-d79a301b5842491eb58b5f17d38f5828">
@@ -310,7 +311,7 @@
           <child xsi:type="archimate:DiagramObject" id="id-33a908bf02214b1089b3103ae36f4c07" targetConnections="id-8a702524f9994f73bc07af2476cead60 id-f1c87dc5f27b463090e0dc7a06e64087 id-18d94d6b21a441c79c01d19794f64ec3" archimateElement="id-8176c20ed1bf4a87b0cce28da455ef8d">
             <bounds x="12" y="174" width="120" height="55"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-f180d8cba21644b0bc9edd375cce5f8d" targetConnections="id-84bc84ef98d6416f9249b863ffa38d8c id-7bcfc74ee67c49c9b429df933bc0c849 f74d9009-a7ef-4212-86f5-ed2abb43496c" archimateElement="id-6db0195c12d04147845ab19079e375fb">
+          <child xsi:type="archimate:DiagramObject" id="id-f180d8cba21644b0bc9edd375cce5f8d" targetConnections="id-84bc84ef98d6416f9249b863ffa38d8c id-7bcfc74ee67c49c9b429df933bc0c849 f74d9009-a7ef-4212-86f5-ed2abb43496c 4da538ea-8e9d-4255-a35e-35416df27869" archimateElement="id-6db0195c12d04147845ab19079e375fb">
             <bounds x="12" y="252" width="120" height="193"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-e7067ce3cef6442bb61028bbea655dd4" source="id-f180d8cba21644b0bc9edd375cce5f8d" target="id-d372a627e94c40ce80d3ffe2a11b9b7b" archimateRelationship="id-6aafbfe19d0149ffb51a602baa2abd19"/>
           </child>
@@ -345,6 +346,9 @@
               <bendpoint startX="126" startY="-192" endX="-72" endY="-222"/>
             </sourceConnection>
             <sourceConnection xsi:type="archimate:Connection" id="0fa8a2d7-83b6-4ccf-a32b-a0fd60251111" source="id-b0bce095656040bc8570e9c71e03fb2c" target="faaacdcc-3d7a-45f7-b910-5c94daec9c48" archimateRelationship="4c1ed3dc-9d19-4d02-9d74-22534a1792ee"/>
+            <sourceConnection xsi:type="archimate:Connection" id="4da538ea-8e9d-4255-a35e-35416df27869" source="id-b0bce095656040bc8570e9c71e03fb2c" target="id-f180d8cba21644b0bc9edd375cce5f8d" archimateRelationship="9de5443f-83fc-4caa-aeba-9863feb96fa5">
+              <bendpoint startX="210" startY="-6" endX="-240" endY="48"/>
+            </sourceConnection>
           </child>
           <child xsi:type="archimate:Note" id="id-1eb027b6c1b442f5bd7af7da316f2a8d" textAlignment="1">
             <bounds x="300" y="840" width="185" height="80"/>
