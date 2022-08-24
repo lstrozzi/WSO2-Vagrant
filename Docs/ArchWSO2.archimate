@@ -545,9 +545,13 @@
             <sourceConnection xsi:type="archimate:Connection" id="f263de85-3f47-40e1-a6f1-ae00524903fd" source="c6e7d0f3-2c24-4a1c-88a4-6167ec462cb8" target="9f345e5b-5983-4f1d-95e6-69c22b1895c8" archimateRelationship="id-3fccb6fc1b594087ac3598052cc7f696"/>
             <sourceConnection xsi:type="archimate:Connection" id="c88190b9-f6ef-495e-b51b-ca73ecd8e56c" source="c6e7d0f3-2c24-4a1c-88a4-6167ec462cb8" target="2d213f39-80b9-4f5b-90f0-e78a9a73a989" archimateRelationship="id-460f0bbb747a4e5aa4529d61c9e7522b"/>
             <sourceConnection xsi:type="archimate:Connection" id="f89d2350-163c-4917-85f1-61399a869b6f" source="c6e7d0f3-2c24-4a1c-88a4-6167ec462cb8" target="52074a5b-c4d1-41e4-aebc-54ed5f7cd589" archimateRelationship="d4630f7b-eb44-4da9-9ff6-e5352d35f22c"/>
+            <sourceConnection xsi:type="archimate:Connection" id="fb8039b6-f39f-4efa-b1af-31767deabeb0" source="c6e7d0f3-2c24-4a1c-88a4-6167ec462cb8" target="eef7705d-4860-4e6d-b983-a6cbe3a888b1" archimateRelationship="5a1e621a-8cb8-4a8f-8bd4-822e2560344a"/>
             <child xsi:type="archimate:DiagramObject" id="52074a5b-c4d1-41e4-aebc-54ed5f7cd589" targetConnections="f89d2350-163c-4917-85f1-61399a869b6f" archimateElement="4313b8b9-da93-487d-b97f-1f6d0d7e42dd">
               <bounds x="36" y="168" width="120" height="55"/>
               <sourceConnection xsi:type="archimate:Connection" id="ddeab4d1-a42c-4dd0-9fb6-d9d43f5f42e3" source="52074a5b-c4d1-41e4-aebc-54ed5f7cd589" target="f46f3df5-7ecd-42f1-bb9f-db956731875c" archimateRelationship="a7098522-aaa2-4d50-8ab2-26f515631395"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="eef7705d-4860-4e6d-b983-a6cbe3a888b1" targetConnections="fb8039b6-f39f-4efa-b1af-31767deabeb0" archimateElement="6008923a-8011-45fd-9fb3-efbbd0373d2e">
+              <bounds x="36" y="60" width="120" height="55"/>
             </child>
           </child>
           <child xsi:type="archimate:DiagramObject" id="af09b45e-0f08-43d2-8570-4f010c10d06b" targetConnections="49da765c-b6a4-4803-bd79-f90534aea989 83f68ae8-9290-47bf-baf4-2fc7bbd25341 ba1d6340-be6b-4648-b8a2-abadaaccc843" archimateElement="id-904fea1e6f2a40308e19ac96c7e81baf">
